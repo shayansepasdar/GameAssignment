@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+body  {
+  background-image: url("images/image3.jpg");
+background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <style>
+    * {
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+}
+
+.body-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#output {
+    text-align: center;
+}
+
+.game-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    padding: 2em;
+}
+
+.game-options div {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.game-options div label {
+    height: 100px;
+    width: 100px;
+    padding: 1em;
+    margin: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    text-align: center;
+}
+
+.game-options div label:hover {
+    background-color: rgb(0, 140, 255);
+    transition: 0.2s;
+}
+img{
+	height:70px;
+	width: 70px;
+}
+.option-text {
+	
+    background-color: rgb(5, 99, 136);
+    border: 2px dashed rgb(255, 123, 0);
+    padding: 5px;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+}
+
+.game-options div label:hover .option-text {
+    background-color: rgb(170, 34, 0);
+}
+
+.game-options input[type="radio"]:checked+label .option-text {
+    background-color: rgb(47, 102, 221);
+}
+
+.game-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+input[type="radio"] {
+    visibility: hidden;
+}
+
+.game-options input[type="radio"]:checked+label {
+    background-color: rgb(221, 47, 47);
+    border: 2px orange solid;
+}
+
+button {
+    width: 100px;
+    height: 100px;
+    margin: 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button#sendAction {
+    color: white;
+    background-color: red;
+    border: 2px solid orange;
+}
+
+button#sendAction:hover {
+    color: white;
+    background-color: rgb(116, 4, 4);
+}
+
+button#sendAction:active {
+    color: white;
+    background-color: rgb(75, 1, 1);
+}
+
+button#sendAction:disabled {
+    color: rgb(124, 123, 123);
+    background-color: rgb(187, 187, 187);
+    border: none;
+}
+
+button#resetGame {
+    color: white;
+    background-color: rgb(0, 81, 95);
+    border: 2px solid rgb(2, 61, 95);
+}
+
+button#resetGame:hover {
+    background-color: rgb(0, 48, 56);
+}
+
+button#resetGame:active {
+    background-color: rgb(0, 22, 26);
+}
+
+button#resetGame:disabled {
+    color: rgb(124, 123, 123);
+    background-color: rgb(187, 187, 187);
+    border: none;
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="body-wrap">
+        <h1>Rock Paper Scissors Game</h1>
+        <div id="gameContainer">
+            <div id="output">
+
+            </div>
+            <form action="" method="POST">
+                <div class="game-options" id="game-options">
+                    <div>
+                        <input id="rock" type="radio" name="action" value="Rock">
+                        <label for="rock"><img src="images/rock.png" alt="rock"><span
+                                class="option-text">Rock</span></label>
+                    </div>
+                    <div>
+                        <input id="paper" type="radio" name="action" value="Paper">
+                        <label for="paper"><img src="images/paper.png" alt="paper"><span
+                                class="option-text">Paper</span></label>
+                    </div>
+                    <div>
+                        <input id="scissors" type="radio" name="action" value="Scissors">
+                        <label for="scissors"><img src="images/scissors.png" alt="scissors"><span
+                                class="option-text">Scissors</span></label>
+                    </div>
+                </div>
+                <div class="game-buttons">
+                    <div>
+                        <button type="button" id="sendAction" disabled> Set </button>
+                    </div>
+                    <div>
+                        <button type="button" id="resetGame" disabled>Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/game.js"></script>
+</body>
+
+</html>
